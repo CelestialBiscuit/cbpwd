@@ -16,6 +16,10 @@ const SignupForm = () => {
     phone: '',
     year: '',
     branch: '',
+    linkedin: '',
+    github: '',
+    twitter: '',
+    instagram: '',
   });
 
   const [userId, setUserId] = useState(null);
@@ -29,13 +33,11 @@ const SignupForm = () => {
         setUserId(user.uid);
         setUserEmail(user.email);
         
-        // Check if the game has been completed
         const userDocRef = doc(db, 'users', user.uid);
         const userDoc = await getDoc(userDocRef);
         if (userDoc.exists() && userDoc.data().gameCompleted) {
           setGameCompleted(true);
         } else {
-          // If game not completed, redirect to the game page
           router.push('/PasswordGame');
         }
       } else {
@@ -97,6 +99,10 @@ const SignupForm = () => {
         Branch: formData.branch,
         Email: userEmail,
         UserId: userId,
+        LinkedIn: formData.linkedin,
+        GitHub: formData.github,
+        Twitter: formData.twitter,
+        Instagram: formData.instagram,
       });
 
       await setDoc(userDocRef, { hasSubmitted: true }, { merge: true });
@@ -179,6 +185,38 @@ const SignupForm = () => {
                 <option value="DMAM">DMAM</option>
               </select>
             </div>
+            <input
+              className={styles.input}
+              type="url"
+              name="linkedin"
+              placeholder="LinkedIn Profile URL"
+              onChange={handleChange}
+              required
+            />
+            <input
+              className={styles.input}
+              type="url"
+              name="github"
+              placeholder="GitHub Profile URL"
+              onChange={handleChange}
+              required
+            />
+            <input
+              className={styles.input}
+              type="url"
+              name="twitter"
+              placeholder="Twitter Profile URL"
+              onChange={handleChange}
+              required
+            />
+            <input
+              className={styles.input}
+              type="url"
+              name="instagram"
+              placeholder="Instagram Profile URL"
+              onChange={handleChange}
+              required
+            />
             <button className={styles.button} type="submit">Submit</button>
           </form>
         </div>
