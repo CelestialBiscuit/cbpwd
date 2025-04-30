@@ -18,7 +18,7 @@ export default function Home() {
   const pswdBoxRef = useRef(null);
   const [aaParent, aaEnableAnimations] = useAutoAnimate();
   const [allSolved, setAllSolved] = useState(false);
-
+  let currentYear = new Date().getFullYear();
   const router = useRouter(); // Initialize useRouter for redirection
 
 
@@ -127,8 +127,13 @@ export default function Home() {
       
       // Delay redirect by 1.5 seconds after the message is shown
       setTimeout(() => {
-        router.push('/Congratulations');
-      }, 1500);
+        router.push('https://celestialbiscuit.vercel.app/');
+      }, 1500);      
+
+      // setTimeout(() => {
+      //   router.push('/Congratulations');
+      // }, 1500);
+      
     } else {
       alert('You are not logged in.');
       router.push('https://cb-genesis.vercel.app/');
@@ -196,7 +201,7 @@ export default function Home() {
         </div>
       </div>
       <footer className={styles.footer}>
-        CELESTIAL BISCUIT IGDTUW ⓒ 2024
+        CELESTIAL BISCUIT IGDTUW ⓒ {currentYear}
         <br />
         This site is inspired by&nbsp;
         <a href="https://neal.fun/password-game/" target="_blank">
